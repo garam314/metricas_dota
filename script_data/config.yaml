@@ -1,0 +1,30 @@
+IDS:
+  - 37467834
+  - 65137360
+  - 115132074
+  - 57067300
+  - 45421382
+DAYS: 15
+DAMAGE: 
+  METRIC: MEAN
+  PATH: data\Plotly_Damage.html
+GOLD: 
+  METRIC: MEAN
+  PATH: data\Plotly_Gold_Spent.html
+GOLD: 
+  METRIC: MEAN
+  PATH: data\Plotly_Gold_Spent.html
+KDA: 
+  METRIC: MEAN
+  PATH: data\Plotly_KDA.html
+LH: 
+  METRIC: MEAN
+  PATH: data\Plotly_Last_Hits.html
+WINS: 
+  PATH: data\Plotly_Victorias.html
+SCORES: 
+  METRIC: MEAN
+  PATH: data\Plotly_Scores.html
+PROFILE: 
+  METRIC: MEAN
+  PATH: data\Plotly_Profile_Score.html
