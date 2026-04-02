@@ -9,7 +9,7 @@ class Dota():
         self.days = config['DAYS']
         self.__config = config
         self.df_heroes = pd.DataFrame()
-        self.__client = opendota.OpenDota(data_dir='script_data\dota2_data')
+        self.__client = opendota.OpenDota(data_dir='script_data/dota2_data')
         self.resume = pd.DataFrame()
         
         self.__get_heroes()
