@@ -36,5 +36,6 @@ jobs:
           git add .
           if ! git diff --staged --quiet; then
             git commit -m "Actualización automática"
+            git pull --rebase origin main
             git push
           fi
