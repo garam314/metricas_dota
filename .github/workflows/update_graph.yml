@@ -26,7 +26,7 @@ jobs:
           pip install -r script_data/requierements.txt || true
 
       - name: Ejecutar script
-        run: python script_data/Main.py
+        run: python script_data/Main.py --config script_data/config.yaml
 
       - name: Guardar cambios
         run: |
