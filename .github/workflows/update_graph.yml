@@ -23,7 +23,7 @@ jobs:
 
       - name: Instalar dependencias
         run: |
-          pip install -r script_data/requirements.txt || true
+          pip install -r script_data/requierements.txt || true
 
       - name: Ejecutar script
         run: python script_data/Main.py
