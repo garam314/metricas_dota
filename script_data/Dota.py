@@ -2,6 +2,7 @@ import pandas as pd
 import opendota
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+from datetime import datetime
 
 class Dota():
     def __init__(self, config:dict):
@@ -11,6 +12,7 @@ class Dota():
         self.df_heroes = pd.DataFrame()
         self.__client = opendota.OpenDota(data_dir='script_data/dota2_data')
         self.resume = pd.DataFrame()
+        self.__today = datetime.strftime(datetime.now(), "%Y-%m-%d %H:%M:%S")
         
         self.__get_heroes()
         self.__get_matchets()
@@ -85,7 +87,7 @@ class Dota():
             barmode='group',
             xaxis_title = 'Manco',
             yaxis_title = 'Mediana',
-            title = "Damage"
+            title = f"Damage {self.__today}"
         )
 
         fig.update_yaxes(range=[0, df[['hero_damage', 'tower_damage', 'hero_healing']].max().max() * 1.5])
@@ -113,7 +115,7 @@ class Dota():
                     )
             fig.add_trace(tmp_fig, row=1, col=index)
         fig.update_layout(
-            title="Oro Usado"
+            title=f"Oro Usado {self.__today}"
         )
         fig.write_html(rf"{self.__config['GOLD']['PATH']}")
         
@@ -138,7 +140,7 @@ class Dota():
             barmode='group',
             xaxis_title = 'Manco',
             yaxis_title = 'KDA',
-            title='Evaluacion KDA'
+            title=f'Evaluacion KDA {self.__today}'
         )
         fig.update_yaxes(range=[0, df['kda'].max() * 1.5])
         fig.write_html(rf"{self.__config['KDA']['PATH']}")
@@ -170,7 +172,7 @@ class Dota():
             barmode='group',
             xaxis_title = 'Manco',
             yaxis_title = 'Mediana',
-            title = "Ultimos Golpes"
+            title = f"Ultimos Golpes {self.__today}"
         )
         fig.update_yaxes(range=[0, df[['last_hits', 'denies']].max().max() * 1.5])
         fig.write_html(rf"{self.__config['LH']['PATH']}")
@@ -184,7 +186,7 @@ class Dota():
         fig = make_subplots(
             rows=1,
             cols=len(self.ids),
-            specs=[[{"type": "domain"}]*len(self.ids)],
+            specs=[[{"type": "domain"}]*len(self.ids)]
         )
 
 
@@ -196,6 +198,9 @@ class Dota():
                         title=zone
                     )
             fig.add_trace(tmp_fig, row=1, col=index)
+        fig.update_layout(
+            title=f"Victorias {self.__today}"
+        )
         fig.write_html(rf"{self.__config['WINS']['PATH']}")
         
     def __get_scores(self):
@@ -232,7 +237,7 @@ class Dota():
             )
         )
         fig.update_layout(
-            title="Benchmarks por jugador",
+            title=f"Benchmarks por jugador {self.__today}",
             xaxis_title="Scores",
             yaxis_title="Manco"
         )
@@ -279,7 +284,7 @@ class Dota():
                     range=[0, 1]
                 )
             ),
-            title="Perfil de métricas por Manco"
+            title=f"Perfil de métricas por Manco {self.__today}"
         )
 
         fig.write_html(rf"{self.__config['PROFILE']['PATH']}")
