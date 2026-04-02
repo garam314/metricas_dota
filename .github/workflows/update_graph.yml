@@ -1,0 +1,40 @@
+name: Actualizar_Graficos
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 5"
+
+permissions:
+  contents: write
+
+jobs:
+  ejecutar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar Repo
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: |
+          pip install -r script_data/requirements.txt || true
+
+      - name: Ejecutar script
+        run: python script_data/Main.py
+
+      - name: Guardar cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions@github.com"
+
+          git add .
+          if ! git diff --staged --quiet; then
+            git commit -m "Actualización automática"
+            git push
+          fi
